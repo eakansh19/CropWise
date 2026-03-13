@@ -283,50 +283,56 @@ export default function ResultsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background font-sans pb-32">
+    <div className="min-h-screen bg-[#050505] font-sans pb-32 selection:bg-primary selection:text-black">
+      <Header transparent />
+      
       {/* Immersive Hero Section */}
-      <section className="relative h-[45vh] w-full flex flex-col overflow-hidden">
+      <section className="relative h-[65vh] w-full flex flex-col overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="/landing-bg.jpg" 
             alt="Results Background" 
-            className="w-full h-full object-cover animate-slow-zoom"
+            className="w-full h-full object-cover scale-105 animate-slow-zoom"
           />
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#050505]" />
         </div>
 
-        <Header transparent />
-
-        <div className="relative z-10 flex-1 flex items-center justify-center px-6 pt-16">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-32">
           <div className="text-center max-w-4xl">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 px-4 py-1.5 rounded-full font-bold uppercase tracking-widest text-xs">
-                  <Brain className="w-3.5 h-3.5 mr-2" /> AI Validated
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 px-6 py-2 rounded-full font-black uppercase tracking-[0.2em] text-[10px]">
+                  <Brain className="w-3.5 h-3.5 mr-2" /> Neural Validated
                 </Badge>
                 <div className="w-[1px] h-4 bg-white/20" />
-                <span className="text-white/60 text-xs font-bold uppercase tracking-widest">
+                <span className="text-white/40 text-[10px] font-black uppercase tracking-[0.4em]">
                   {new Date(recommendations.timestamp).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}
                 </span>
               </div>
-              <h2 className="text-white font-display text-4xl md:text-6xl font-bold tracking-tight uppercase mb-4">
+              <h2 className="text-white font-display text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9] mb-8">
                 Agricultural <br /> Optimization
               </h2>
-              <div className="h-1 w-24 bg-primary mx-auto rounded-full" />
+              {/* Signature Underline */}
+              <motion.div 
+                className="h-2 w-32 bg-primary mx-auto rounded-sm shadow-[0_4px_20px_rgba(var(--primary),0.4)]"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.8, duration: 1 }}
+              />
             </motion.div>
           </div>
         </div>
       </section>
 
-      <main className="container mx-auto px-6 max-w-6xl -mt-20 relative z-20">
+      <main className="container mx-auto px-6 max-w-7xl -mt-32 relative z-20">
         {/* Environmental Signature Grid */}
         <motion.div 
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -338,15 +344,15 @@ export default function ResultsPage() {
             { label: "Atmosphere", value: `${inputData.weatherData.humidity}%`, icon: "H", color: "bg-indigo-500" },
           ].map((stat, i) => (
             <motion.div key={i} variants={itemVariants}>
-              <Card className="bg-card/40 backdrop-blur-xl border-white/5 hover:border-primary/20 transition-all duration-500 group overflow-hidden">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-8 h-8 ${stat.color} text-black rounded-lg flex items-center justify-center text-[10px] font-black group-hover:scale-110 transition-transform`}>
+              <Card className="bg-white/[0.03] backdrop-blur-3xl border-white/5 hover:border-primary/20 transition-all duration-700 group overflow-hidden">
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`w-10 h-10 ${stat.color} text-black rounded-xl flex items-center justify-center text-[10px] font-black group-hover:scale-110 transition-transform`}>
                       {stat.icon}
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground group-hover:text-primary transition-colors">{stat.label}</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 group-hover:text-primary transition-colors">{stat.label}</span>
                   </div>
-                  <p className="text-2xl md:text-3xl font-display font-bold">{stat.value}</p>
+                  <p className="text-3xl md:text-4xl font-display font-bold text-white tracking-tighter leading-none">{stat.value}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -360,10 +366,10 @@ export default function ResultsPage() {
           initial="hidden"
           animate="visible"
         >
-          <div className="flex items-center justify-between">
-            <h3 className="text-3xl font-display font-bold uppercase tracking-tight">Optimal Matches</h3>
-            <div className="hidden md:flex items-center gap-3 text-xs font-bold text-muted-foreground uppercase tracking-widest">
-              <span className="text-primary">Ranked</span> by Suitability Index
+          <div className="flex items-baseline justify-between border-b border-white/5 pb-12">
+            <h3 className="text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-tighter leading-none">Optimal Recommendations</h3>
+            <div className="hidden md:flex items-center gap-4 text-xs font-black text-white/20 uppercase tracking-[0.4em]">
+              <span className="text-primary">Ranked By</span> Neural Suitability Index
             </div>
           </div>
 
@@ -371,93 +377,93 @@ export default function ResultsPage() {
             const Icon = getCropIcon(crop.cropName)
             return (
               <motion.div key={crop.cropName} variants={itemVariants}>
-                <Card className="overflow-hidden border-white/5 bg-card/40 backdrop-blur-xl group hover:border-primary/40 transition-all duration-700 rounded-[3rem]">
-                  <div className="p-8 md:p-12">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-12">
-                      <div className="flex items-center gap-8">
+                <Card className="overflow-hidden border-white/5 bg-white/[0.02] backdrop-blur-3xl group hover:border-primary/30 transition-all duration-700 rounded-[3rem]">
+                  <div className="p-8 md:p-16">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 mb-16">
+                      <div className="flex items-center gap-10">
                         <div className="relative">
-                          <div className="w-24 h-24 bg-card border border-white/10 rounded-[2rem] flex items-center justify-center relative z-10 group-hover:border-primary/40 transition-all duration-500">
-                            <Icon className="w-12 h-12 text-primary group-hover:scale-110 transition-transform duration-500" />
+                          <div className="w-28 h-28 bg-white/[0.03] border border-white/10 rounded-[2.5rem] flex items-center justify-center relative z-10 group-hover:border-primary/30 transition-all duration-700">
+                            <Icon className="w-14 h-14 text-primary group-hover:scale-110 transition-transform duration-700" />
                           </div>
-                          <div className="absolute -top-3 -left-3 w-10 h-10 bg-primary text-black rounded-xl flex items-center justify-center font-black text-lg border-4 border-background z-20">
+                          <div className="absolute -top-4 -left-4 w-12 h-12 bg-primary text-black rounded-2xl flex items-center justify-center font-black text-xl border-4 border-[#050505] z-20">
                             {index + 1}
                           </div>
                         </div>
                         <div>
-                          <h4 className="text-3xl md:text-5xl font-display font-bold mb-2 uppercase tracking-tight group-hover:text-primary transition-colors">{crop.cropName}</h4>
-                          <div className="flex items-center gap-4">
-                            <Badge className={`${getSuitabilityColor(crop.suitabilityScore)} font-black uppercase tracking-widest text-[10px] rounded-full px-4 py-1 border`}>
+                          <h4 className="text-4xl md:text-6xl font-display font-bold text-white mb-4 uppercase tracking-tighter group-hover:text-primary transition-colors leading-none">{crop.cropName}</h4>
+                          <div className="flex items-center gap-6">
+                            <Badge className={`${getSuitabilityColor(crop.suitabilityScore)} font-black uppercase tracking-[0.2em] text-[10px] rounded-full px-6 py-2 border`}>
                               {getSuitabilityLabel(crop.suitabilityScore)} {crop.suitabilityScore}%
                             </Badge>
-                            <span className="text-muted-foreground text-sm font-light">Yield: <span className="text-foreground font-bold">{crop.expectedYield}</span> tons/acre</span>
+                            <span className="text-white/40 text-sm font-bold uppercase tracking-widest">Yield: <span className="text-white">{crop.expectedYield}</span> tons/acre</span>
                           </div>
                         </div>
                       </div>
 
                       <div className="flex-shrink-0">
                          <div className="text-right hidden md:block">
-                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground mb-4">Maturity Window</div>
-                            <div className="text-2xl font-display font-bold text-primary">{crop.growingPeriod}</div>
+                            <div className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20 mb-4">Maturity Window</div>
+                            <div className="text-4xl font-display font-bold text-primary tracking-tighter">{crop.growingPeriod}</div>
                          </div>
                       </div>
                     </div>
 
-                    <div className="grid lg:grid-cols-3 gap-12">
-                      <div className="space-y-8">
+                    <div className="grid lg:grid-cols-3 gap-16">
+                      <div className="space-y-10">
                         <div>
-                          <div className="flex items-center justify-between mb-4">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Suitability Index</span>
-                            <span className="text-sm font-black text-primary">{crop.suitabilityScore}%</span>
+                          <div className="flex items-center justify-between mb-6">
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">Confidence Index</span>
+                            <span className="text-sm font-black text-primary tracking-widest">{crop.suitabilityScore}%</span>
                           </div>
-                          <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                          <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
                             <motion.div 
-                              className="h-full bg-primary"
+                              className="h-full bg-primary shadow-[0_0_20px_rgba(var(--primary),0.3)]"
                               initial={{ width: 0 }}
                               whileInView={{ width: `${crop.suitabilityScore}%` }}
-                              transition={{ duration: 1.5, ease: "easeOut" }}
+                              transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                             />
                           </div>
                         </div>
 
-                        <div className="space-y-4">
-                          <div className="flex items-center gap-3 py-4 border-b border-white/5">
-                            <Clock className="w-5 h-5 text-primary" />
+                        <div className="space-y-6">
+                          <div className="flex items-center gap-4 py-6 border-b border-white/5">
+                            <Clock className="w-6 h-6 text-primary" />
                             <div className="flex-1">
-                               <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Duration</p>
-                               <p className="font-bold text-foreground/80">{crop.growingPeriod}</p>
+                               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 mb-1">Cycle Duration</p>
+                               <p className="font-bold text-white/80 text-lg tracking-tight">{crop.growingPeriod}</p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-3 py-4 border-b border-white/5">
-                            <Droplets className="w-5 h-5 text-primary" />
+                          <div className="flex items-center gap-4 py-6 border-b border-white/5">
+                            <Droplets className="w-6 h-6 text-primary" />
                             <div className="flex-1">
-                               <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Hydration</p>
-                               <p className="font-bold text-foreground/80">{crop.waterRequirement}</p>
+                               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 mb-1">Hydration Index</p>
+                               <p className="font-bold text-white/80 text-lg tracking-tight">{crop.waterRequirement}</p>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="space-y-6">
-                        <h5 className="flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-primary">
-                          <Leaf className="w-4 h-4" /> Nutrient Protocol
+                      <div className="space-y-8">
+                        <h5 className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-primary">
+                          <Leaf className="w-4 h-4" /> Optimization Protocol
                         </h5>
-                        <div className="flex flex-wrap gap-3">
+                        <div className="flex flex-wrap gap-4">
                           {crop.fertilizer.map((fert, idx) => (
-                            <Badge key={idx} variant="outline" className="bg-white/5 border-white/10 text-xs font-bold rounded-xl py-2 px-4 group-hover:border-primary/20 transition-all">
+                            <Badge key={idx} variant="outline" className="bg-white/5 border-white/10 text-[10px] text-white font-black uppercase tracking-widest rounded-xl py-3 px-6 hover:border-primary/40 transition-all hover:bg-white/[0.08]">
                               {fert}
                             </Badge>
                           ))}
                         </div>
                         {crop.riskFactors && crop.riskFactors.length > 0 && (
-                          <div className="mt-8 p-6 bg-red-500/5 border border-red-500/20 rounded-[2rem]">
-                            <h6 className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-red-500 mb-4">
+                          <div className="mt-10 p-8 bg-red-500/5 border border-red-500/10 rounded-[2.5rem]">
+                            <h6 className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-red-500 mb-6">
                               <AlertTriangle className="w-4 h-4" /> Risk Assessment
                             </h6>
-                            <ul className="space-y-2 text-sm text-red-100/60 font-medium">
+                            <ul className="space-y-3 text-sm text-red-200/40 font-bold uppercase tracking-widest">
                               {crop.riskFactors.map((risk, idx) => (
-                                <li key={idx} className="flex items-center gap-2">
-                                  <div className="w-1 h-1 bg-red-500 rounded-full" />
-                                  {risk}
+                                <li key={idx} className="flex items-start gap-3">
+                                  <div className="w-1.5 h-1.5 bg-red-500/40 rounded-full mt-1.5" />
+                                  <span className="flex-1 leading-relaxed">{risk}</span>
                                 </li>
                               ))}
                             </ul>
@@ -465,17 +471,17 @@ export default function ResultsPage() {
                         )}
                       </div>
 
-                      <div className="lg:border-l lg:border-white/5 lg:pl-12 space-y-6">
-                        <h5 className="flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-primary">
-                          <Lightbulb className="w-4 h-4" /> Professional Tips
+                      <div className="lg:border-l lg:border-white/5 lg:pl-16 space-y-8">
+                        <h5 className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-primary">
+                          <Lightbulb className="w-4 h-4" /> Intelligent Insights
                         </h5>
-                        <ul className="space-y-4">
+                        <ul className="space-y-6">
                           {crop.tips.slice(0, 3).map((tip, idx) => (
-                            <li key={idx} className="flex items-start gap-4 group/tip">
-                              <div className="w-6 h-6 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0 group-hover/tip:bg-primary transition-colors">
-                                <ChevronRight className="w-3.5 h-3.5 text-primary group-hover/tip:text-black transition-colors" />
+                            <li key={idx} className="flex items-start gap-6 group/tip">
+                              <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover/tip:bg-primary transition-all duration-500">
+                                <ChevronRight className="w-4 h-4 text-white group-hover/tip:text-black transition-colors" />
                               </div>
-                              <span className="text-sm font-light leading-relaxed text-muted-foreground group-hover/tip:text-foreground transition-colors">{tip}</span>
+                              <span className="text-lg font-medium leading-relaxed text-white/40 group-hover/tip:text-white transition-colors duration-500">{tip}</span>
                             </li>
                           ))}
                         </ul>
@@ -490,56 +496,63 @@ export default function ResultsPage() {
 
         {/* Global Action Terminal */}
         <motion.div 
-          className="mt-24 p-12 md:p-16 bg-card/40 backdrop-blur-2xl border border-white/5 rounded-[4rem] text-center relative overflow-hidden group"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="mt-32 p-16 md:p-24 bg-white/[0.02] backdrop-blur-3xl border border-white/5 rounded-[4rem] text-center relative overflow-hidden group"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
+          transition={{ duration: 1 }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          <h3 className="text-3xl md:text-5xl font-display font-bold mb-12 uppercase tracking-tight relative z-10">Analysis Terminal</h3>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center relative z-10">
+          <span className="text-primary font-display font-black tracking-[0.6em] uppercase text-[10px] mb-8 block relative z-10">
+            Action Terminal
+          </span>
+          <h3 className="text-5xl md:text-8xl font-display font-bold text-white mb-16 uppercase tracking-tighter leading-none relative z-10">Archive & <br /> Export Data</h3>
+          
+          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center relative z-10">
             {!isSaved ? (
               <Button
                 onClick={handleSaveRecommendation}
                 disabled={isSaving}
-                className="h-16 px-12 rounded-full font-bold bg-white/5 hover:bg-primary border border-white/10 hover:border-primary text-white hover:text-black transition-all flex items-center gap-3"
+                className="h-20 px-16 rounded-full font-black text-xs tracking-[0.2em] uppercase bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-all flex items-center gap-4"
               >
                 {isSaving ? <RefreshCw className="w-5 h-5 animate-spin" /> : <History className="w-5 h-5" />}
                 Archive Analysis
               </Button>
             ) : (
-              <Button disabled className="h-16 px-12 rounded-full font-bold bg-primary/10 border border-primary/20 text-primary opacity-80 flex items-center gap-3">
-                <History className="w-5 h-5" /> Analysis Recorded
+              <Button disabled className="h-20 px-16 rounded-full font-black text-xs tracking-[0.2em] uppercase bg-primary/10 border border-primary/20 text-primary opacity-80 flex items-center gap-4">
+                <History className="w-5 h-5" /> Intelligence Logged
               </Button>
             )}
 
-            <Button onClick={handleDownloadReport} disabled={isGeneratingPDF} className="h-16 px-12 rounded-full font-bold bg-primary text-black hover:scale-105 active:scale-95 transition-all flex items-center gap-3 shadow-xl shadow-primary/20">
+            <Button onClick={handleDownloadReport} disabled={isGeneratingPDF} className="h-20 px-16 rounded-full font-black text-xs tracking-[0.2em] uppercase bg-primary text-black hover:scale-105 active:scale-95 transition-all flex items-center gap-4 shadow-[0_0_40px_rgba(var(--primary),0.2)]">
               {isGeneratingPDF ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Download className="w-5 h-5" />}
-              Generate Report
+              Generate Intelligence Report
             </Button>
 
-            <Button asChild variant="outline" className="h-16 px-12 rounded-full font-bold border-white/10 bg-white/5 hover:bg-white/10 transition-all">
-              <Link to="/recommend" className="flex items-center gap-3">
-                <RefreshCw className="w-5 h-5" /> Reset Analysis
+            <Button asChild variant="outline" className="h-20 px-16 rounded-full font-black text-xs tracking-[0.2em] uppercase border-white/10 bg-white/5 hover:bg-white/10 transition-all text-white">
+              <Link to="/recommend" className="flex items-center gap-4">
+                <RefreshCw className="w-5 h-5" /> New Session
               </Link>
             </Button>
           </div>
 
-          <p className="mt-12 text-muted-foreground text-xs font-bold uppercase tracking-[0.3em] font-display opacity-40">
-            Advanced Predictive Environmental Mapping v4.0.2
-          </p>
+          <div className="mt-20 pt-12 border-t border-white/5">
+            <p className="text-white/20 text-[10px] font-black uppercase tracking-[0.6em] font-display">
+              Advanced Neural Environmental Mapping Engine v6.1.4
+            </p>
+          </div>
         </motion.div>
       </main>
 
-      <footer className="bg-background border-t border-border py-20 px-6 mt-32">
+      <footer className="bg-[#050505] border-t border-white/5 py-32 px-6 mt-32">
         <div className="container mx-auto text-center">
-          <p className="text-muted-foreground text-sm font-light italic leading-relaxed max-w-2xl mx-auto">
-            These AI-enhanced recommendations utilize neural networks and historical agricultural datasets. 
-            For exact field implementation, consult your regional agricultural advisor.
+          <p className="text-white/20 text-xs font-bold uppercase tracking-[0.4em] leading-relaxed max-w-2xl mx-auto mb-10">
+            Predictive analytics based on deep-mesh agricultural datasets. 
+            Implementation should be verified against real-time field sensors.
           </p>
-          <p className="mt-8 text-muted-foreground text-lg uppercase font-bold tracking-widest font-display">
-            &copy; {new Date().getFullYear()} CropWise AI Systems
+          <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.8em] font-display">
+            &copy; {new Date().getFullYear()} CropWise Intelligence Network
           </p>
         </div>
       </footer>
