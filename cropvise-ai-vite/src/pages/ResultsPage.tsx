@@ -287,7 +287,7 @@ export default function ResultsPage() {
       <Header transparent />
       
       {/* Immersive Hero Section */}
-      <section className="relative h-[65vh] w-full flex flex-col overflow-hidden">
+      <section className="relative h-[50vh] w-full flex flex-col overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="/landing-bg.jpg" 
@@ -298,14 +298,14 @@ export default function ResultsPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#050505]" />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-40">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-32">
           <div className="text-center max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="flex items-center justify-center gap-4 mb-6">
                 <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 px-6 py-2 rounded-full font-black uppercase tracking-[0.2em] text-[10px]">
                   <Brain className="w-3.5 h-3.5 mr-2" /> Neural Validated
                 </Badge>
@@ -314,9 +314,9 @@ export default function ResultsPage() {
                   {new Date(recommendations.timestamp).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}
                 </span>
               </div>
-              <h2 className="text-white font-display text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85] mb-8">
+              <h1 className="text-white font-display text-4xl md:text-6xl font-black tracking-tighter uppercase leading-[0.9] mb-8">
                 Agricultural <br /> Optimization
-              </h2>
+              </h1>
               {/* Signature Underline */}
               <motion.div 
                 className="h-2 w-32 bg-primary mx-auto rounded-sm shadow-[0_4px_20px_rgba(var(--primary),0.4)]"
@@ -345,14 +345,14 @@ export default function ResultsPage() {
           ].map((stat, i) => (
             <motion.div key={i} variants={itemVariants}>
               <Card className="bg-white/[0.03] backdrop-blur-3xl border-white/5 hover:border-primary/20 transition-all duration-700 group overflow-hidden">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className={`w-10 h-10 ${stat.color} text-black rounded-xl flex items-center justify-center text-[10px] font-black group-hover:scale-110 transition-transform`}>
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className={`w-8 h-8 ${stat.color} text-black rounded-lg flex items-center justify-center text-[9px] font-black group-hover:scale-110 transition-transform`}>
                       {stat.icon}
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 group-hover:text-primary transition-colors">{stat.label}</span>
+                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 group-hover:text-primary transition-colors">{stat.label}</span>
                   </div>
-                  <p className="text-3xl md:text-4xl font-display font-bold text-white tracking-tighter leading-none">{stat.value}</p>
+                  <p className="text-2xl md:text-3xl font-display font-bold text-white tracking-tighter leading-none">{stat.value}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -366,8 +366,8 @@ export default function ResultsPage() {
           initial="hidden"
           animate="visible"
         >
-          <div className="flex items-baseline justify-between border-b border-white/5 pb-12">
-            <h3 className="text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-tighter leading-none">Optimal Recommendations</h3>
+          <div className="flex items-baseline justify-between border-b border-white/5 pb-8">
+            <h3 className="text-3xl md:text-4xl font-display font-bold text-white uppercase tracking-tighter leading-none">Optimal Recommendations</h3>
             <div className="hidden md:flex items-center gap-4 text-xs font-black text-white/20 uppercase tracking-[0.4em]">
               <span className="text-primary">Ranked By</span> Neural Suitability Index
             </div>
@@ -377,45 +377,45 @@ export default function ResultsPage() {
             const Icon = getCropIcon(crop.cropName)
             return (
               <motion.div key={crop.cropName} variants={itemVariants}>
-                <Card className="overflow-hidden border-white/5 bg-white/[0.02] backdrop-blur-3xl group hover:border-primary/30 transition-all duration-700 rounded-[3rem]">
-                  <div className="p-8 md:p-16">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 mb-16">
-                      <div className="flex items-center gap-10">
+                <Card className="overflow-hidden border-white/5 bg-white/[0.02] backdrop-blur-3xl group hover:border-primary/30 transition-all duration-700 rounded-[2.5rem]">
+                  <div className="p-8 md:p-12">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-12">
+                      <div className="flex items-center gap-8">
                         <div className="relative">
-                          <div className="w-28 h-28 bg-white/[0.03] border border-white/10 rounded-[2.5rem] flex items-center justify-center relative z-10 group-hover:border-primary/30 transition-all duration-700">
-                            <Icon className="w-14 h-14 text-primary group-hover:scale-110 transition-transform duration-700" />
+                          <div className="w-20 h-20 bg-white/[0.03] border border-white/10 rounded-[1.5rem] flex items-center justify-center relative z-10 group-hover:border-primary/30 transition-all duration-700">
+                            <Icon className="w-10 h-10 text-primary group-hover:scale-110 transition-transform duration-700" />
                           </div>
-                          <div className="absolute -top-4 -left-4 w-12 h-12 bg-primary text-black rounded-2xl flex items-center justify-center font-black text-xl border-4 border-[#050505] z-20">
+                          <div className="absolute -top-3 -left-3 w-10 h-10 bg-primary text-black rounded-xl flex items-center justify-center font-black text-lg border-4 border-[#050505] z-20">
                             {index + 1}
                           </div>
                         </div>
                         <div>
-                          <h4 className="text-4xl md:text-6xl font-display font-bold text-white mb-4 uppercase tracking-tighter group-hover:text-primary transition-colors leading-none">{crop.cropName}</h4>
+                          <h4 className="text-3xl md:text-5xl font-display font-bold text-white mb-3 uppercase tracking-tighter group-hover:text-primary transition-colors leading-none">{crop.cropName}</h4>
                           <div className="flex items-center gap-6">
-                            <Badge className={`${getSuitabilityColor(crop.suitabilityScore)} font-black uppercase tracking-[0.2em] text-[10px] rounded-full px-6 py-2 border`}>
+                            <Badge className={`${getSuitabilityColor(crop.suitabilityScore)} font-black uppercase tracking-[0.2em] text-[9px] rounded-full px-4 py-1.5 border`}>
                               {getSuitabilityLabel(crop.suitabilityScore)} {crop.suitabilityScore}%
                             </Badge>
-                            <span className="text-white/40 text-sm font-bold uppercase tracking-widest">Yield: <span className="text-white">{crop.expectedYield}</span> tons/acre</span>
+                            <span className="text-white/40 text-xs font-bold uppercase tracking-widest">Yield: <span className="text-white">{crop.expectedYield}</span> tons/acre</span>
                           </div>
                         </div>
                       </div>
 
                       <div className="flex-shrink-0">
                          <div className="text-right hidden md:block">
-                            <div className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20 mb-4">Maturity Window</div>
-                            <div className="text-4xl font-display font-bold text-primary tracking-tighter">{crop.growingPeriod}</div>
+                            <div className="text-[9px] font-black uppercase tracking-[0.5em] text-white/20 mb-3">Maturity Window</div>
+                            <div className="text-3xl font-display font-bold text-primary tracking-tighter">{crop.growingPeriod}</div>
                          </div>
                       </div>
                     </div>
 
-                    <div className="grid lg:grid-cols-3 gap-16">
-                      <div className="space-y-10">
+                    <div className="grid lg:grid-cols-3 gap-10">
+                      <div className="space-y-8">
                         <div>
-                          <div className="flex items-center justify-between mb-6">
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">Confidence Index</span>
-                            <span className="text-sm font-black text-primary tracking-widest">{crop.suitabilityScore}%</span>
+                          <div className="flex items-center justify-between mb-4">
+                            <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40">Confidence Index</span>
+                            <span className="text-xs font-black text-primary tracking-widest">{crop.suitabilityScore}%</span>
                           </div>
-                          <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                          <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
                             <motion.div 
                               className="h-full bg-primary shadow-[0_0_20px_rgba(var(--primary),0.3)]"
                               initial={{ width: 0 }}
@@ -425,19 +425,19 @@ export default function ResultsPage() {
                           </div>
                         </div>
 
-                        <div className="space-y-6">
-                          <div className="flex items-center gap-4 py-6 border-b border-white/5">
-                            <Clock className="w-6 h-6 text-primary" />
+                        <div className="space-y-5">
+                          <div className="flex items-center gap-4 py-4 border-b border-white/5">
+                            <Clock className="w-5 h-5 text-primary" />
                             <div className="flex-1">
-                               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 mb-1">Cycle Duration</p>
-                               <p className="font-bold text-white/80 text-lg tracking-tight">{crop.growingPeriod}</p>
+                               <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/20 mb-1">Cycle Duration</p>
+                               <p className="font-bold text-white/80 text-base tracking-tight">{crop.growingPeriod}</p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-4 py-6 border-b border-white/5">
-                            <Droplets className="w-6 h-6 text-primary" />
+                          <div className="flex items-center gap-4 py-4 border-b border-white/5">
+                            <Droplets className="w-5 h-5 text-primary" />
                             <div className="flex-1">
-                               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 mb-1">Hydration Index</p>
-                               <p className="font-bold text-white/80 text-lg tracking-tight">{crop.waterRequirement}</p>
+                               <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/20 mb-1">Hydration Index</p>
+                               <p className="font-bold text-white/80 text-base tracking-tight">{crop.waterRequirement}</p>
                             </div>
                           </div>
                         </div>
@@ -475,13 +475,13 @@ export default function ResultsPage() {
                         <h5 className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-primary">
                           <Lightbulb className="w-4 h-4" /> Intelligent Insights
                         </h5>
-                        <ul className="space-y-6">
+                        <ul className="space-y-4">
                           {crop.tips.slice(0, 3).map((tip, idx) => (
-                            <li key={idx} className="flex items-start gap-6 group/tip">
-                              <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover/tip:bg-primary transition-all duration-500">
-                                <ChevronRight className="w-4 h-4 text-white group-hover/tip:text-black transition-colors" />
+                            <li key={idx} className="flex items-start gap-4 group/tip">
+                              <div className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover/tip:bg-primary transition-all duration-500">
+                                <ChevronRight className="w-3 h-3 text-white group-hover/tip:text-black transition-colors" />
                               </div>
-                              <span className="text-lg font-medium leading-relaxed text-white/40 group-hover/tip:text-white transition-colors duration-500">{tip}</span>
+                              <span className="text-base font-medium leading-relaxed text-white/40 group-hover/tip:text-white transition-colors duration-500">{tip}</span>
                             </li>
                           ))}
                         </ul>
@@ -507,7 +507,7 @@ export default function ResultsPage() {
           <span className="text-primary font-display font-black tracking-[0.6em] uppercase text-[10px] mb-8 block relative z-10">
             Action Terminal
           </span>
-          <h3 className="text-5xl md:text-8xl font-display font-bold text-white mb-16 uppercase tracking-tighter leading-none relative z-10">Archive & <br /> Export Data</h3>
+          <h3 className="text-4xl md:text-6xl font-display font-bold text-white mb-12 uppercase tracking-tighter leading-none relative z-10">Archive & <br /> Export Data</h3>
           
           <div className="flex flex-col sm:flex-row gap-8 justify-center items-center relative z-10">
             {!isSaved ? (
