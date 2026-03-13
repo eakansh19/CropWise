@@ -20,178 +20,195 @@ export function CropInputForm({ soilData, weatherData, onSoilChange, onWeatherCh
     onWeatherChange({ ...weatherData, ...fetchedWeatherData })
   }
 
+  const isComplete = (val: any) => val !== undefined && val !== null && val !== ""
+
   return (
-    <div className="space-y-6">
-      <LocationInput onWeatherFetch={handleWeatherFetch} />
+    <div className="space-y-12">
+      <div className="bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-8 md:p-10 transition-all hover:bg-white/[0.03]">
+        <div className="flex items-center gap-4 mb-8">
+           <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary border border-primary/20">
+              <Thermometer className="h-6 w-6" />
+           </div>
+           <div>
+              <h3 className="text-xl font-display font-bold text-white uppercase tracking-tight">Location & Climate</h3>
+              <p className="text-sm text-white/40 font-medium">Auto-detect your local environmental conditions</p>
+           </div>
+        </div>
+        <LocationInput onWeatherFetch={handleWeatherFetch} />
+      </div>
 
-      {/* Soil Information */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Leaf className="h-5 w-5 text-primary" />
-            Soil Information
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {/* Nitrogen */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium flex items-center justify-between">
-              Nitrogen (N) - mg/kg
-              <span className="text-primary font-semibold">{soilData.nitrogen || 0}</span>
-            </Label>
-            <Slider
-              value={[soilData.nitrogen || 0]}
-              onValueChange={(value) => onSoilChange({ ...soilData, nitrogen: value[0] })}
-              max={140}
-              min={0}
-              step={1}
-              className="w-full"
-            />
-            <p className="text-xs text-muted-foreground">Essential for leaf growth and overall plant development</p>
+      <div className="grid lg:grid-cols-2 gap-8">
+        {/* Soil Information */}
+        <div className="bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-8 md:p-10 transition-all hover:bg-white/[0.03]">
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary border border-primary/20">
+              <Leaf className="h-6 w-6" />
+            </div>
+            <h3 className="text-xl font-display font-bold text-white uppercase tracking-tight">Soil Composition</h3>
           </div>
+          
+          <div className="space-y-10">
+            {/* Nitrogen */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label className="text-xs font-black uppercase tracking-[0.2em] text-white/60">Nitrogen (N)</Label>
+                <div className={`text-sm font-bold flex items-center gap-2 ${isComplete(soilData.nitrogen) ? 'text-primary' : 'text-white/20'}`}>
+                  {soilData.nitrogen || 0} <span className="text-[10px] opacity-40 uppercase">mg/kg</span>
+                </div>
+              </div>
+              <Slider
+                value={[soilData.nitrogen || 0]}
+                onValueChange={(value) => onSoilChange({ ...soilData, nitrogen: value[0] })}
+                max={140}
+                min={0}
+                step={1}
+                className="w-full"
+              />
+            </div>
 
-          {/* Phosphorus */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium flex items-center justify-between">
-              Phosphorus (P) - mg/kg
-              <span className="text-primary font-semibold">{soilData.phosphorus || 0}</span>
-            </Label>
-            <Slider
-              value={[soilData.phosphorus || 0]}
-              onValueChange={(value) => onSoilChange({ ...soilData, phosphorus: value[0] })}
-              max={140}
-              min={0}
-              step={1}
-              className="w-full"
-            />
-            <p className="text-xs text-muted-foreground">Important for root development and flowering</p>
-          </div>
+            {/* Phosphorus */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label className="text-xs font-black uppercase tracking-[0.2em] text-white/60">Phosphorus (P)</Label>
+                <div className={`text-sm font-bold flex items-center gap-2 ${isComplete(soilData.phosphorus) ? 'text-primary' : 'text-white/20'}`}>
+                  {soilData.phosphorus || 0} <span className="text-[10px] opacity-40 uppercase">mg/kg</span>
+                </div>
+              </div>
+              <Slider
+                value={[soilData.phosphorus || 0]}
+                onValueChange={(value) => onSoilChange({ ...soilData, phosphorus: value[0] })}
+                max={140}
+                min={0}
+                step={1}
+                className="w-full"
+              />
+            </div>
 
-          {/* Potassium */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium flex items-center justify-between">
-              Potassium (K) - mg/kg
-              <span className="text-primary font-semibold">{soilData.potassium || 0}</span>
-            </Label>
-            <Slider
-              value={[soilData.potassium || 0]}
-              onValueChange={(value) => onSoilChange({ ...soilData, potassium: value[0] })}
-              max={200}
-              min={0}
-              step={1}
-              className="w-full"
-            />
-            <p className="text-xs text-muted-foreground">Helps with disease resistance and fruit quality</p>
-          </div>
+            {/* Potassium */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label className="text-xs font-black uppercase tracking-[0.2em] text-white/60">Potassium (K)</Label>
+                <div className={`text-sm font-bold flex items-center gap-2 ${isComplete(soilData.potassium) ? 'text-primary' : 'text-white/20'}`}>
+                  {soilData.potassium || 0} <span className="text-[10px] opacity-40 uppercase">mg/kg</span>
+                </div>
+              </div>
+              <Slider
+                value={[soilData.potassium || 0]}
+                onValueChange={(value) => onSoilChange({ ...soilData, potassium: value[0] })}
+                max={200}
+                min={0}
+                step={1}
+                className="w-full"
+              />
+            </div>
 
-          {/* pH */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium flex items-center justify-between">
-              Soil pH
-              <span className="text-primary font-semibold">{soilData.ph || 0}</span>
-            </Label>
-            <Slider
-              value={[soilData.ph || 0]}
-              onValueChange={(value) => onSoilChange({ ...soilData, ph: value[0] })}
-              max={14}
-              min={0}
-              step={0.1}
-              className="w-full"
-            />
-            <p className="text-xs text-muted-foreground">
-              Affects nutrient availability (6.0-7.0 is ideal for most crops)
-            </p>
+            {/* pH */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label className="text-xs font-black uppercase tracking-[0.2em] text-white/60">Soil pH Level</Label>
+                <div className={`text-sm font-bold flex items-center gap-2 ${isComplete(soilData.ph) ? 'text-primary' : 'text-white/20'}`}>
+                  {soilData.ph || 0} <span className="text-[10px] opacity-40 uppercase">pH</span>
+                </div>
+              </div>
+              <Slider
+                value={[soilData.ph || 0]}
+                onValueChange={(value) => onSoilChange({ ...soilData, ph: value[0] })}
+                max={14}
+                min={0}
+                step={0.1}
+                className="w-full"
+              />
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
 
-      {/* Weather Information */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Thermometer className="h-5 w-5 text-primary" />
-            Weather Conditions
-            {(weatherData.temperature || weatherData.humidity || weatherData.rainfall) && (
-              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">Auto-populated</span>
-            )}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {/* Temperature */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium flex items-center justify-between">
-              Average Temperature (°C)
-              <span className="text-primary font-semibold">{weatherData.temperature || 0}°C</span>
-            </Label>
-            <Slider
-              value={[weatherData.temperature || 0]}
-              onValueChange={(value) => onWeatherChange({ ...weatherData, temperature: value[0] })}
-              max={50}
-              min={0}
-              step={0.5}
-              className="w-full"
-            />
-            <p className="text-xs text-muted-foreground">Average temperature during growing season</p>
+        {/* Weather Information */}
+        <div className="bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-8 md:p-10 transition-all hover:bg-white/[0.03]">
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary border border-primary/20">
+              <Thermometer className="h-6 w-6" />
+            </div>
+            <h3 className="text-xl font-display font-bold text-white uppercase tracking-tight">Weather Context</h3>
           </div>
+          
+          <div className="space-y-10">
+            {/* Temperature */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label className="text-xs font-black uppercase tracking-[0.2em] text-white/60">Temperature</Label>
+                <div className={`text-sm font-bold flex items-center gap-2 ${isComplete(weatherData.temperature) ? 'text-primary' : 'text-white/20'}`}>
+                  {weatherData.temperature || 0} <span className="text-[10px] opacity-40 uppercase">°C</span>
+                </div>
+              </div>
+              <Slider
+                value={[weatherData.temperature || 0]}
+                onValueChange={(value) => onWeatherChange({ ...weatherData, temperature: value[0] })}
+                max={50}
+                min={0}
+                step={0.5}
+                className="w-full"
+              />
+            </div>
 
-          {/* Humidity */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium flex items-center justify-between">
-              Humidity (%)
-              <span className="text-primary font-semibold">{weatherData.humidity || 0}%</span>
-            </Label>
-            <Slider
-              value={[weatherData.humidity || 0]}
-              onValueChange={(value) => onWeatherChange({ ...weatherData, humidity: value[0] })}
-              max={100}
-              min={0}
-              step={1}
-              className="w-full"
-            />
-            <p className="text-xs text-muted-foreground">Relative humidity levels in your area</p>
-          </div>
+            {/* Humidity */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label className="text-xs font-black uppercase tracking-[0.2em] text-white/60">Humidity</Label>
+                <div className={`text-sm font-bold flex items-center gap-2 ${isComplete(weatherData.humidity) ? 'text-primary' : 'text-white/20'}`}>
+                  {weatherData.humidity || 0} <span className="text-[10px] opacity-40 uppercase">%</span>
+                </div>
+              </div>
+              <Slider
+                value={[weatherData.humidity || 0]}
+                onValueChange={(value) => onWeatherChange({ ...weatherData, humidity: value[0] })}
+                max={100}
+                min={0}
+                step={1}
+                className="w-full"
+              />
+            </div>
 
-          {/* Rainfall */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium flex items-center justify-between">
-              Annual Rainfall (mm)
-              <span className="text-primary font-semibold">{weatherData.rainfall || 0}mm</span>
-            </Label>
-            <Slider
-              value={[weatherData.rainfall || 0]}
-              onValueChange={(value) => onWeatherChange({ ...weatherData, rainfall: value[0] })}
-              max={500}
-              min={0}
-              step={1}
-              className="w-full"
-            />
-            <p className="text-xs text-muted-foreground">Total expected rainfall for the growing season</p>
-          </div>
+            {/* Rainfall */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label className="text-xs font-black uppercase tracking-[0.2em] text-white/60">Avg Rainfall</Label>
+                <div className={`text-sm font-bold flex items-center gap-2 ${isComplete(weatherData.rainfall) ? 'text-primary' : 'text-white/20'}`}>
+                  {weatherData.rainfall || 0} <span className="text-[10px] opacity-40 uppercase">mm</span>
+                </div>
+              </div>
+              <Slider
+                value={[weatherData.rainfall || 0]}
+                onValueChange={(value) => onWeatherChange({ ...weatherData, rainfall: value[0] })}
+                max={500}
+                min={0}
+                step={1}
+                className="w-full"
+              />
+            </div>
 
-          {/* Season */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              Growing Season
-            </Label>
-            <Select
-              value={weatherData.season || ""}
-              onValueChange={(value) => onWeatherChange({ ...weatherData, season: value as WeatherData["season"] })}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select growing season" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="spring">Spring (March - May)</SelectItem>
-                <SelectItem value="summer">Summer (June - August)</SelectItem>
-                <SelectItem value="autumn">Autumn (September - November)</SelectItem>
-                <SelectItem value="winter">Winter (December - February)</SelectItem>
-              </SelectContent>
-            </Select>
-            <p className="text-xs text-muted-foreground">When do you plan to grow your crops?</p>
+            {/* Season */}
+            <div className="space-y-4">
+              <Label className="text-xs font-black uppercase tracking-[0.2em] text-white/60 flex items-center gap-2">
+                <Calendar className="h-3 w-3" /> Growing Season
+              </Label>
+              <Select
+                value={weatherData.season || ""}
+                onValueChange={(value) => onWeatherChange({ ...weatherData, season: value as WeatherData["season"] })}
+              >
+                <SelectTrigger className="bg-white/5 border-white/10 rounded-xl h-12 focus:ring-primary/20">
+                  <SelectValue placeholder="Select season" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#0a0a0a] border-white/10">
+                  <SelectItem value="spring" className="focus:bg-primary/10 focus:text-primary">Spring (Mar-May)</SelectItem>
+                  <SelectItem value="summer" className="focus:bg-primary/10 focus:text-primary">Summer (Jun-Aug)</SelectItem>
+                  <SelectItem value="autumn" className="focus:bg-primary/10 focus:text-primary">Autumn (Sep-Nov)</SelectItem>
+                  <SelectItem value="winter" className="focus:bg-primary/10 focus:text-primary">Winter (Dec-Feb)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

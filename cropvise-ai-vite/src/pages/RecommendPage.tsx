@@ -61,58 +61,26 @@ export default function RecommendPage() {
     <div className="min-h-screen bg-[#050505] font-sans pb-32 selection:bg-primary selection:text-black">
       <Header transparent />
       
-      {/* Immersive Hero Section */}
-      <section className="relative h-[65vh] w-full flex flex-col overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/landing-bg.jpg" 
-            alt="Analysis Background" 
-            className="w-full h-full object-cover scale-105 animate-slow-zoom"
-          />
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-[1px]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#050505]" />
-        </div>
-
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-40">
-          <div className="text-center max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="text-primary font-display font-black tracking-[0.6em] uppercase text-[10px] mb-6 block">
-                Analysis Engine
-              </span>
-              <h2 className="text-white font-display text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85] mb-8">
-                Soil & Climate <br /> Profiling
-              </h2>
-              {/* Signature Underline */}
-              <motion.div 
-                className="h-2 w-32 bg-primary mx-auto rounded-sm shadow-[0_4px_20px_rgba(var(--primary),0.4)]"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.8, duration: 1 }}
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <main className="container mx-auto px-6 max-w-6xl -mt-24 relative z-20">
+      <main className="container mx-auto px-6 max-w-4xl pt-32 relative z-20">
         <motion.div
-           initial={{ opacity: 0, y: 40 }}
+           initial={{ opacity: 0, y: 30 }}
            animate={{ opacity: 1, y: 0 }}
-           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Card className="border-white/5 bg-white/[0.03] backdrop-blur-3xl shadow-[0_32px_64px_rgba(0,0,0,0.5)] rounded-[3rem] overflow-hidden">
-            <div className="p-8 md:p-16">
-              <div className="mb-16 border-b border-white/5 pb-12">
-                <h3 className="text-3xl font-display font-bold text-white mb-6 uppercase tracking-tighter leading-tight">Environmental Parameters</h3>
-                <p className="text-white/40 text-xl font-medium leading-relaxed max-w-3xl">
-                  Connect your land's digital signature with our neural prediction engines. Provide the metrics below to architect your optimal cultivation strategy.
-                </p>
-              </div>
+          <div className="text-center mb-16">
+            <span className="text-primary font-display font-black tracking-[0.6em] uppercase text-[10px] mb-6 block">
+              Analysis Engine
+            </span>
+            <h1 className="text-white font-display text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none mb-6">
+              Crop Recommendation
+            </h1>
+            <p className="text-white/40 text-lg font-medium max-w-2xl mx-auto">
+              Provide your soil and climate data to receive AI-driven agricultural insights.
+            </p>
+          </div>
 
+          <Card className="border-white/5 bg-white/[0.03] backdrop-blur-3xl shadow-[0_32px_64px_rgba(0,0,0,0.5)] rounded-[3rem] overflow-hidden">
+            <div className="p-8 md:p-12">
               {/* Form Section */}
               <div className="relative">
                 <CropInputForm
@@ -124,20 +92,20 @@ export default function RecommendPage() {
               </div>
 
               {/* Submit Button */}
-              <div className="mt-20 flex flex-col items-center gap-8">
+              <div className="mt-16 flex flex-col items-center gap-8">
                 <Button 
                   onClick={handleSubmit} 
                   disabled={!isFormValid() || isLoading} 
                   size="lg" 
-                  className={`h-20 px-16 rounded-full text-sm font-black tracking-[0.2em] uppercase transition-all shadow-2xl shadow-primary/20 hover:scale-105 active:scale-95 ${isFormValid() ? 'bg-primary text-black' : 'bg-white/5 text-white/20'}`}
+                  className={`h-20 w-full sm:w-auto px-16 rounded-full text-sm font-black tracking-[0.2em] uppercase transition-all shadow-2xl shadow-primary/20 hover:scale-105 active:scale-95 ${isFormValid() ? 'bg-primary text-black' : 'bg-white/5 text-white/20'}`}
                 >
                   {isLoading ? (
                     <span className="flex items-center gap-3">
-                      <Sparkles className="w-5 h-5 animate-spin" /> Analyzing Biological Signature...
+                      <Sparkles className="w-5 h-5 animate-spin" /> Analyzing...
                     </span>
                   ) : (
                     <span className="flex items-center gap-3">
-                      Initialize Intelligence Analysis <ArrowRight className="w-5 h-5" />
+                      Get Recommendations <ArrowRight className="w-5 h-5" />
                     </span>
                   )}
                 </Button>
@@ -145,9 +113,9 @@ export default function RecommendPage() {
                   <motion.p 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-[10px] text-primary/40 font-black uppercase tracking-[0.4em] italic animate-pulse"
+                    className="text-[10px] text-primary/40 font-black uppercase tracking-[0.4em] italic"
                   >
-                    Input all parameters to unlock predictive engine
+                    Complete all fields to start analysis
                   </motion.p>
                 )}
               </div>

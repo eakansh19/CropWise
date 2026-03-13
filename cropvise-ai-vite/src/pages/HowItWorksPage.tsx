@@ -78,9 +78,9 @@ export default function HowItWorksPage() {
               <span className="text-primary font-display font-black tracking-[0.6em] uppercase text-xs mb-6 block">
                 The Methodology
               </span>
-              <h2 className="text-white font-display text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9] mb-8">
+              <h1 className="text-white font-display text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-[0.9] mb-8">
                 How It <br /> Works
-              </h2>
+              </h1>
               {/* Signature Underline */}
               <motion.div 
                 className="h-2 w-32 bg-primary mx-auto rounded-sm shadow-[0_4px_20px_rgba(var(--primary),0.4)]"
@@ -93,47 +93,47 @@ export default function HowItWorksPage() {
         </div>
       </section>
       
-      <main className="container mx-auto px-6 py-24 max-w-7xl relative z-20">
+      <main className="container mx-auto px-6 py-12 max-w-7xl relative z-20">
         <motion.div 
-          className="space-y-48 relative"
+          className="space-y-32 md:space-y-48 relative"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
           {/* Vertical line - hidden on mobile */}
-          <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-[1px] bg-white/10 -z-0" />
+          <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-[px] bg-white/10 -z-0" />
 
           {steps.map((step, index) => (
             <motion.div 
               key={index} 
-              className={`flex flex-col md:flex-row gap-16 items-center relative z-10 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+              className={`flex flex-col md:flex-row gap-12 md:gap-24 items-center relative z-10 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
               variants={itemVariants}
             >
               <div className="w-full md:w-1/2 flex justify-center">
                 <div className="relative group">
-                  <div className="w-48 h-48 bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-[4rem] flex items-center justify-center shadow-2xl relative z-10 group-hover:scale-110 group-hover:border-primary/30 transition-all duration-700">
-                    <div className="text-primary scale-125">
+                  <div className="w-40 h-40 md:w-48 md:h-48 bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-[3rem] md:rounded-[4rem] flex items-center justify-center shadow-2xl relative z-10 group-hover:scale-110 group-hover:border-primary/30 transition-all duration-700">
+                    <div className="text-primary scale-110 md:scale-125">
                       {step.icon}
                     </div>
-                    <div className="absolute -top-4 -right-4 w-14 h-14 bg-primary text-black rounded-3xl flex items-center justify-center text-xl font-black border-4 border-[#050505]">
+                    <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-12 h-12 md:w-14 md:h-14 bg-primary text-black rounded-2xl md:rounded-3xl flex items-center justify-center text-lg md:text-xl font-black border-4 border-[#050505]">
                       {step.number}
                     </div>
                   </div>
-                  <div className="absolute inset-0 bg-primary/10 blur-[80px] rounded-full -z-0 group-hover:bg-primary/20 transition-all duration-700 opacity-60" />
+                  <div className="absolute inset-0 bg-primary/10 blur-[60px] md:blur-[80px] rounded-full -z-0 group-hover:bg-primary/20 transition-all duration-700 opacity-60" />
                 </div>
               </div>
               
               <div className="w-full md:w-1/2 text-center md:text-left">
-                <h3 className="text-4xl md:text-6xl font-display font-bold text-white mb-8 uppercase tracking-tighter leading-none group-hover:text-primary transition-colors">{step.title}</h3>
-                <p className="text-xl md:text-2xl text-white/40 leading-relaxed mb-12 font-medium font-display tracking-tight">
+                <h3 className="text-3xl md:text-5xl font-display font-bold text-white mb-6 uppercase tracking-tighter leading-none group-hover:text-primary transition-colors">{step.title}</h3>
+                <p className="text-lg md:text-xl text-white/40 leading-relaxed mb-10 font-medium font-display tracking-tight">
                   {step.description}
                 </p>
-                <div className="grid gap-6">
+                <div className="grid gap-4 md:gap-6">
                   {step.details.map((detail, idx) => (
-                    <div key={idx} className="flex items-center gap-6 bg-white/[0.02] px-8 py-5 rounded-[2rem] border border-white/5 group/detail hover:border-primary/20 transition-all duration-500">
-                      <div className="w-2.5 h-2.5 bg-primary/40 rounded-full group-hover/detail:bg-primary transition-colors" />
-                      <span className="text-lg font-bold uppercase tracking-widest text-white/20 group-hover/detail:text-white/60 transition-colors">{detail}</span>
+                    <div key={idx} className="flex items-center gap-4 md:gap-6 bg-white/[0.02] px-6 py-4 md:px-8 md:py-5 rounded-2xl md:rounded-[2rem] border border-white/5 group/detail hover:border-primary/20 transition-all duration-500">
+                      <div className="w-2 h-2 md:w-2.5 md:h-2.5 bg-primary/40 rounded-full group-hover/detail:bg-primary transition-colors" />
+                      <span className="text-sm md:text-base font-bold uppercase tracking-widest text-white/20 group-hover/detail:text-white/60 transition-colors">{detail}</span>
                     </div>
                   ))}
                 </div>
@@ -143,7 +143,7 @@ export default function HowItWorksPage() {
         </motion.div>
 
         <motion.div 
-          className="mt-60 p-16 md:p-32 rounded-[4rem] bg-white/[0.02] border border-white/5 relative overflow-hidden group text-center"
+          className="mt-40 md:mt-60 p-12 md:p-24 rounded-[3rem] md:rounded-[4rem] bg-white/[0.02] border border-white/5 relative overflow-hidden group text-center"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -154,11 +154,11 @@ export default function HowItWorksPage() {
           <span className="text-primary font-display font-black tracking-[0.6em] uppercase text-[10px] mb-8 block relative z-10">
             System Ready
           </span>
-          <h3 className="text-5xl md:text-8xl font-display font-bold text-white mb-12 uppercase tracking-tighter leading-none relative z-10">Ready for <br /> Smarter Harvests?</h3>
-          <p className="text-white/40 text-xl md:text-2xl mb-16 max-w-2xl mx-auto relative z-10 font-medium font-display tracking-tight leading-relaxed">
+          <h3 className="text-4xl md:text-7xl font-display font-bold text-white mb-10 uppercase tracking-tighter leading-none relative z-10">Ready for <br /> Smarter Harvests?</h3>
+          <p className="text-white/40 text-lg md:text-xl mb-12 md:mb-16 max-w-2xl mx-auto relative z-10 font-medium font-display tracking-tight leading-relaxed">
             Join the digital revolution in farming and start making smarter, data-driven decisions for your harvest.
           </p>
-          <Button asChild size="lg" className="h-20 px-16 bg-primary text-black font-black text-xs tracking-[0.2em] uppercase rounded-full hover:scale-105 active:scale-95 transition-all relative z-10 shadow-2xl shadow-primary/20">
+          <Button asChild size="lg" className="h-16 md:h-20 px-12 md:px-16 bg-primary text-black font-black text-xs tracking-[0.2em] uppercase rounded-full hover:scale-105 active:scale-95 transition-all relative z-10 shadow-2xl shadow-primary/20">
             <Link to="/recommend" className="flex items-center gap-4">
               Connect to Intelligence <ArrowRight className="h-5 w-5" />
             </Link>
