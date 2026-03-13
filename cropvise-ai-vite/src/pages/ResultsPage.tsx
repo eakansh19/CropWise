@@ -298,7 +298,7 @@ export default function ResultsPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#050505]" />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-32">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-40">
           <div className="text-center max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -314,7 +314,7 @@ export default function ResultsPage() {
                   {new Date(recommendations.timestamp).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}
                 </span>
               </div>
-              <h2 className="text-white font-display text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9] mb-8">
+              <h2 className="text-white font-display text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85] mb-8">
                 Agricultural <br /> Optimization
               </h2>
               {/* Signature Underline */}
@@ -329,7 +329,7 @@ export default function ResultsPage() {
         </div>
       </section>
 
-      <main className="container mx-auto px-6 max-w-7xl -mt-32 relative z-20">
+      <main className="container mx-auto px-6 max-w-7xl -mt-24 relative z-20">
         {/* Environmental Signature Grid */}
         <motion.div 
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20"

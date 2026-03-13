@@ -73,17 +73,17 @@ export default function RecommendPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#050505]" />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-32">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-40">
           <div className="text-center max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="text-primary font-display font-black tracking-[0.6em] uppercase text-xs mb-6 block">
+              <span className="text-primary font-display font-black tracking-[0.6em] uppercase text-[10px] mb-6 block">
                 Analysis Engine
               </span>
-              <h2 className="text-white font-display text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9] mb-8">
+              <h2 className="text-white font-display text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85] mb-8">
                 Soil & Climate <br /> Profiling
               </h2>
               {/* Signature Underline */}
@@ -98,7 +98,7 @@ export default function RecommendPage() {
         </div>
       </section>
 
-      <main className="container mx-auto px-6 max-w-6xl -mt-32 relative z-20">
+      <main className="container mx-auto px-6 max-w-6xl -mt-24 relative z-20">
         <motion.div
            initial={{ opacity: 0, y: 40 }}
            animate={{ opacity: 1, y: 0 }}
