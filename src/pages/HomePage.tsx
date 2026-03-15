@@ -31,7 +31,8 @@ const itemVariants: Variants = {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#050505] overflow-x-hidden font-sans selection:bg-primary selection:text-black">
+    <div className="min-h-screen bg-[#050505] font-sans selection:bg-primary selection:text-black pb-32">
+      
       {/* Immersive Hero Section */}
       <section className="relative h-screen w-full flex flex-col overflow-hidden">
         {/* Background Overlay */}
@@ -45,9 +46,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
         </div>
 
-        <Header transparent />
-
-        <div className="relative z-10 flex-1 flex items-center justify-center px-6">
+        <div className="relative z-10 flex-1 flex items-center justify-center px-6 pt-24">
           <div className="max-w-4xl text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

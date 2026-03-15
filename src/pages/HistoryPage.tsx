@@ -90,7 +90,6 @@ export default function HistoryPage() {
 
   return (
     <div className="min-h-screen bg-[#050505] font-sans selection:bg-primary selection:text-black pb-32">
-      <Header transparent />
       
       {/* Immersive Hero Section */}
       <section className="relative h-[65vh] w-full flex flex-col overflow-hidden">

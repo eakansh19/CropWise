@@ -37,16 +37,14 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 pt-4 pb-2 pointer-events-none`}
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-4 py-4 pointer-events-none`}
     >
       <div 
-        className={`mx-auto max-w-7xl w-full pointer-events-auto transition-all duration-500 rounded-full border border-white/5 
-          ${isFloating ? 'bg-black/60 backdrop-blur-xl py-2 px-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)] border-white/10' : 'bg-transparent py-4 px-4 border-transparent'}
-        `}
+        className={`mx-auto max-w-7xl w-full pointer-events-auto transition-all duration-500 rounded-full border-2 border-white/10 bg-transparent py-4 px-4`}
       >
         <div className="flex items-center justify-between">
           <Link to="/" className="hover:opacity-90 transition-opacity">
-            <Logo textColor="text-white" textSize={isFloating ? "text-lg" : "text-2xl"} iconSize={isFloating ? 24 : 32} />
+            <Logo textColor="text-white" textSize="text-2xl" iconSize={32} />
           </Link>
           
           <nav className="hidden md:flex items-center gap-8">

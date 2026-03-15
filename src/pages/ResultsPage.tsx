@@ -269,12 +269,12 @@ export default function ResultsPage() {
 
   if (!recommendations || !inputData) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center font-sans">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center font-sans">
         <div className="text-center p-12 bg-card rounded-[3rem] border border-white/5 shadow-2xl">
           <AlertTriangle className="w-16 h-16 text-primary mx-auto mb-6" />
-          <h2 className="text-3xl font-display font-bold mb-4 uppercase tracking-tight">No Data Available</h2>
-          <p className="text-muted-foreground mb-8 text-lg">We couldn't find any recent analysis data to display.</p>
-          <Button asChild className="rounded-full px-10 h-14 font-bold">
+          <h2 className="text-3xl font-display font-bold mb-4 uppercase tracking-tight text-white">No Data Available</h2>
+          <p className="text-white/40 mb-8 text-lg font-medium">We couldn't find any recent analysis data to display.</p>
+          <Button asChild className="rounded-full px-10 h-14 font-bold bg-primary text-black">
             <Link to="/recommend">Initialize Analysis</Link>
           </Button>
         </div>
@@ -283,8 +283,7 @@ export default function ResultsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] font-sans pb-32 selection:bg-primary selection:text-black">
-      <Header transparent />
+    <div className="min-h-screen bg-[#050505] font-sans selection:bg-primary selection:text-black pb-32">
       
       {/* Neural Dossier Hero */}
       <section className="relative h-[35vh] w-full flex flex-col overflow-hidden border-b border-white/5">

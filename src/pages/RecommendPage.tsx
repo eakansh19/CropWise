@@ -63,9 +63,8 @@ export default function RecommendPage() {
 
   return (
     <div className="min-h-screen bg-[#050505] font-sans pb-32 selection:bg-primary selection:text-black">
-      <Header transparent />
       
-      <main className="container mx-auto px-6 max-w-4xl pt-32 relative z-20">
+      <main className="container mx-auto px-6 max-w-4xl pt-12 relative z-20">
         <motion.div
            initial={{ opacity: 0, y: 30 }}
            animate={{ opacity: 1, y: 0 }}

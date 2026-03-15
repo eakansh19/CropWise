@@ -11,6 +11,7 @@ import { CursorTrail } from "@/components/ui/cursor-trail"
 
 import FeaturesPage from "@/pages/FeaturesPage"
 import HowItWorksPage from "@/pages/HowItWorksPage"
+import { Header } from "@/components/header"
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -35,6 +36,7 @@ function App() {
     <ThemeProvider defaultTheme="system" storageKey="cropvise-theme">
       <CursorTrail />
       <Router>
+        <Header transparent />
         <AnimatedRoutes />
       </Router>
       <Toaster />
