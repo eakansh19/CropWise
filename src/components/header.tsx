@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
 import { History, Leaf } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { Link, useLocation } from "react-router-dom"
 import { Logo } from "@/components/ui/logo"
 import { useState, useEffect } from "react"
@@ -58,15 +57,12 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               <History className="h-3.5 w-3.5" />
               History
             </Link>
-            <div className="h-4 w-[1px] bg-white/10 mx-2" />
-            <ThemeToggle />
             <Button asChild size="sm" className={`rounded-full shadow-lg transition-all active:scale-95 px-6 font-bold uppercase tracking-widest text-[10px] h-9`}>
               <Link to="/recommend">Get Started</Link>
             </Button>
           </nav>
           
           <div className="md:hidden flex items-center gap-3">
-            <ThemeToggle />
             <Button variant="ghost" size="icon" asChild className="text-white rounded-full">
               <Link to="/recommend">
                 <Leaf className="h-5 w-5 text-primary" />
