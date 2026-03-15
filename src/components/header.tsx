@@ -75,6 +75,11 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           </nav>
           
           <div className="md:hidden flex items-center gap-3">
+            <Button variant="ghost" size="icon" asChild className="text-white rounded-full">
+              <Link to="/recommend">
+                <Leaf className="h-5 w-5 text-primary" />
+              </Link>
+            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -84,11 +89,6 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               onClick={() => setIsMenuOpen((prev) => !prev)}
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-            <Button variant="ghost" size="icon" asChild className="text-white rounded-full">
-              <Link to="/recommend">
-                <Leaf className="h-5 w-5 text-primary" />
-              </Link>
             </Button>
           </div>
         </div>
@@ -102,7 +102,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             aria-label="Close menu overlay"
             onClick={() => setIsMenuOpen(false)}
           />
-          <div className="absolute left-0 top-0 h-full w-72 max-w-[80vw] bg-black/80 backdrop-blur-xl border-r border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+          <div className="absolute right-0 top-0 h-full w-72 max-w-[80vw] bg-black/80 backdrop-blur-xl border-l border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <div className="px-6 pt-6 pb-4 border-b border-white/10">
               <Logo textColor="text-white" textSize="text-lg" iconSize={24} />
             </div>

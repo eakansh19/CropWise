@@ -299,7 +299,7 @@ export default function ResultsPage() {
           <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] pointer-events-none opacity-20" />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-end px-6 pb-12">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-end px-4 sm:px-6 pb-10 sm:pb-12">
           <div className="w-full max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -307,23 +307,24 @@ export default function ResultsPage() {
               transition={{ duration: 0.8, ease: "circOut" }}
               className="flex flex-col items-start"
             >
-              <div className="flex items-center gap-3 mb-4 font-mono text-[10px] tracking-[0.3em] text-primary/60">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4 font-mono text-[8px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-primary/60">
                 <Brain className="w-3 h-3" />
                 <span>NEURAL_ANALYSIS_COMPLETE // {new Date(recommendations.timestamp).toISOString().split('T')[0]}</span>
               </div>
-              <h1 className="text-white font-display text-4xl md:text-5xl font-black tracking-tight uppercase leading-none mb-2">
-                Agricultural<span className="text-primary">.</span>Optimization
+              <h1 className="text-white font-display text-[clamp(26px,8vw,44px)] sm:text-4xl md:text-5xl font-black tracking-tight uppercase leading-tight mb-2 break-words whitespace-normal max-w-[18ch] sm:max-w-none">
+                Agricultural<span className="text-primary">.</span>
+                <span className="block sm:inline sm:ml-2">Optimization</span>
               </h1>
-              <p className="font-mono text-[9px] uppercase tracking-[0.5em] text-white/20">Environmental Signature Mapping v6.1.4</p>
+              <p className="font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.5em] text-white/20">Environmental Signature Mapping v6.1.4</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <main className="container mx-auto px-6 max-w-7xl py-12 relative z-20">
+      <main className="container mx-auto px-4 sm:px-6 max-w-7xl py-10 sm:py-12 relative z-20">
         {/* Environmental Metadata Bar */}
         <motion.div 
-          className="flex flex-wrap items-stretch border border-white/10 bg-white/[0.02] mb-16 divide-x divide-white/10 rounded-lg overflow-hidden"
+          className="flex flex-wrap items-stretch border border-white/10 bg-white/[0.02] mb-12 sm:mb-16 divide-x-0 sm:divide-x divide-white/10 rounded-lg overflow-hidden"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -334,12 +335,12 @@ export default function ResultsPage() {
             { label: "PRECIPI_MM", value: inputData.weatherData.rainfall, color: "text-blue-500" },
             { label: "HUMID_PCT", value: inputData.weatherData.humidity, color: "text-indigo-500" },
           ].map((stat, i) => (
-            <motion.div key={i} variants={itemVariants} className="flex-1 min-w-[140px] p-4 flex flex-col gap-1">
+            <motion.div key={i} variants={itemVariants} className="flex-1 min-w-[120px] p-3 sm:p-4 flex flex-col gap-1">
               <span className="font-mono text-[8px] uppercase tracking-[0.3em] text-white/30">{stat.label}</span>
               <span className={`font-display text-xl font-bold tracking-tight ${stat.color}`}>{stat.value}</span>
             </motion.div>
           ))}
-          <div className="flex-[2] p-4 bg-primary/5 flex items-center justify-between">
+          <div className="w-full sm:flex-[2] p-3 sm:p-4 bg-primary/5 flex items-center justify-between">
              <div className="flex flex-col gap-1">
                 <span className="font-mono text-[8px] uppercase tracking-[0.3em] text-primary/40">COLLECTION_STATUS</span>
                 <span className="font-mono text-[10px] font-bold text-primary uppercase">Active_Monitoring</span>
@@ -370,7 +371,7 @@ export default function ResultsPage() {
                     <span className="text-primary/40">SUITABILITY_CONFIRMED</span>
                   </div>
 
-                  <div className="p-5 flex flex-col gap-6">
+                  <div className="p-4 sm:p-5 flex flex-col gap-4 sm:gap-6">
                     {/* Visual Identity Section */}
                     <div className="flex items-center gap-5">
                       <div className="w-12 h-12 bg-white/[0.03] border border-white/10 rounded-lg flex items-center justify-center relative shrink-0">
@@ -380,7 +381,7 @@ export default function ResultsPage() {
                         </div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-xl md:text-2xl font-display font-bold text-white uppercase tracking-tight truncate group-hover:text-primary transition-colors">{crop.cropName}</h4>
+                        <h4 className="text-lg sm:text-xl md:text-2xl font-display font-bold text-white uppercase tracking-tight truncate group-hover:text-primary transition-colors">{crop.cropName}</h4>
                         <div className="flex items-center gap-3">
                           <div className={`px-2 py-0.5 rounded text-[8px] font-mono font-bold uppercase tracking-wider ${getSuitabilityColor(crop.suitabilityScore)}`}>
                             {getSuitabilityLabel(crop.suitabilityScore)} {crop.suitabilityScore}%
@@ -429,7 +430,7 @@ export default function ResultsPage() {
 
         {/* Global Action Terminal */}
         <motion.div 
-          className="mt-32 p-16 md:p-24 bg-white/[0.02] backdrop-blur-3xl border border-white/5 rounded-[4rem] text-center relative overflow-hidden group"
+          className="mt-20 sm:mt-32 p-8 sm:p-12 md:p-24 bg-white/[0.02] backdrop-blur-3xl border border-white/5 rounded-[2.5rem] sm:rounded-[4rem] text-center relative overflow-hidden group"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -437,48 +438,48 @@ export default function ResultsPage() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
           
-          <span className="text-primary font-display font-black tracking-[0.6em] uppercase text-[10px] mb-8 block relative z-10">
+          <span className="text-primary font-display font-black tracking-[0.3em] sm:tracking-[0.6em] uppercase text-[9px] sm:text-[10px] mb-6 sm:mb-8 block relative z-10">
             Action Terminal
           </span>
-          <h3 className="text-4xl md:text-6xl font-display font-bold text-white mb-12 uppercase tracking-tighter leading-none relative z-10">Archive & <br /> Export Data</h3>
+          <h3 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white mb-8 sm:mb-12 uppercase tracking-tighter leading-tight relative z-10">Archive & <br /> Export Data</h3>
           
-          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center relative z-10">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center items-center relative z-10">
             {!isSaved ? (
               <Button
                 onClick={handleSaveRecommendation}
                 disabled={isSaving}
-                className="h-20 px-16 rounded-full font-black text-xs tracking-[0.2em] uppercase bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-all flex items-center gap-4"
+                className="h-12 sm:h-16 md:h-20 px-6 sm:px-10 md:px-16 w-full sm:w-auto rounded-full font-black text-[10px] sm:text-xs tracking-[0.2em] uppercase bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-all flex items-center justify-center gap-3 sm:gap-4"
               >
                 {isSaving ? <RefreshCw className="w-5 h-5 animate-spin" /> : <History className="w-5 h-5" />}
                 Archive Analysis
               </Button>
             ) : (
-              <Button disabled className="h-20 px-16 rounded-full font-black text-xs tracking-[0.2em] uppercase bg-primary/10 border border-primary/20 text-primary opacity-80 flex items-center gap-4">
+              <Button disabled className="h-12 sm:h-16 md:h-20 px-6 sm:px-10 md:px-16 w-full sm:w-auto rounded-full font-black text-[10px] sm:text-xs tracking-[0.2em] uppercase bg-primary/10 border border-primary/20 text-primary opacity-80 flex items-center justify-center gap-3 sm:gap-4">
                 <History className="w-5 h-5" /> Intelligence Logged
               </Button>
             )}
 
-            <Button onClick={handleDownloadReport} disabled={isGeneratingPDF} className="h-20 px-16 rounded-full font-black text-xs tracking-[0.2em] uppercase bg-primary text-black hover:scale-105 active:scale-95 transition-all flex items-center gap-4 shadow-[0_0_40px_rgba(var(--primary),0.2)]">
+            <Button onClick={handleDownloadReport} disabled={isGeneratingPDF} className="h-12 sm:h-16 md:h-20 px-6 sm:px-10 md:px-16 w-full sm:w-auto rounded-full font-black text-[10px] sm:text-xs tracking-[0.2em] uppercase bg-primary text-black hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 sm:gap-4 shadow-[0_0_40px_rgba(var(--primary),0.2)]">
               {isGeneratingPDF ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Download className="w-5 h-5" />}
               Generate Intelligence Report
             </Button>
 
-            <Button asChild variant="outline" className="h-20 px-16 rounded-full font-black text-xs tracking-[0.2em] uppercase border-white/10 bg-white/5 hover:bg-white/10 transition-all text-white">
+            <Button asChild variant="outline" className="h-12 sm:h-16 md:h-20 px-6 sm:px-10 md:px-16 w-full sm:w-auto rounded-full font-black text-[10px] sm:text-xs tracking-[0.2em] uppercase border-white/10 bg-white/5 hover:bg-white/10 transition-all text-white">
               <Link to="/recommend" className="flex items-center gap-4">
                 <RefreshCw className="w-5 h-5" /> New Session
               </Link>
             </Button>
           </div>
 
-          <div className="mt-20 pt-12 border-t border-white/5">
-            <p className="text-white/20 text-[10px] font-black uppercase tracking-[0.6em] font-display">
+          <div className="mt-12 sm:mt-20 pt-10 sm:pt-12 border-t border-white/5">
+            <p className="text-white/20 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] sm:tracking-[0.6em] font-display">
               Advanced Neural Environmental Mapping Engine v6.1.4
             </p>
           </div>
         </motion.div>
       </main>
 
-      <footer className="bg-[#050505] border-t border-white/5 py-32 px-6 mt-32">
+      <footer className="bg-[#050505] border-t border-white/5 py-20 sm:py-32 px-6 mt-20 sm:mt-32">
         <div className="container mx-auto text-center">
           <p className="text-white/20 text-xs font-bold uppercase tracking-[0.4em] leading-relaxed max-w-2xl mx-auto mb-10">
             Predictive analytics based on deep-mesh agricultural datasets. 
@@ -492,4 +493,3 @@ export default function ResultsPage() {
     </div>
   )
 }
-

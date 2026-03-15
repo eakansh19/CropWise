@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Sparkles, HelpCircle, ArrowRight } from "lucide-react"
@@ -16,6 +16,10 @@ export default function RecommendPage() {
   const [soilData, setSoilData] = useState<Partial<SoilData>>({})
   const [weatherData, setWeatherData] = useState<Partial<WeatherData>>({})
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleSubmit = async () => {
     setIsLoading(true)
@@ -162,4 +166,3 @@ export default function RecommendPage() {
     </div>
   )
 }
-
