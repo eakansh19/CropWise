@@ -33,7 +33,7 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="cropvise-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="cropvise-theme">
       <CursorTrail />
       <Router>
         <Header transparent />

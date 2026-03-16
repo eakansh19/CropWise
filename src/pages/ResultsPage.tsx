@@ -250,10 +250,10 @@ export default function ResultsPage() {
       localStorage.setItem("savedRecommendations", JSON.stringify(savedRecommendations))
 
       setIsSaved(true)
-      showAlert.success("Archived", "The analysis has been successfully recorded in your history.")
+      await showAlert.success("Archived", "The analysis has been successfully recorded in your history.")
     } catch (error) {
       console.error("Error saving record:", error)
-      showAlert.error("Storage Error", "Could not commit the analysis to permanent storage.")
+      await showAlert.error("Storage Error", "Could not commit the analysis to permanent storage.")
     } finally {
       setIsSaving(false)
     }

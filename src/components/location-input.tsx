@@ -175,93 +175,86 @@ export function LocationInput({ onWeatherFetch }: LocationInputProps) {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <MapPin className="h-5 w-5 text-primary" />
-          Location & Weather
-          {weatherFetched && (
-            <span className="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-1 rounded-full">
-              ✓ Weather Updated
-            </span>
-          )}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {weatherFetched && (
-          <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-lg p-3">
-            <p className="text-sm text-green-700 dark:text-green-300 font-medium">
-              ✓ Weather data updated from: {lastLocation}
-            </p>
-            {gpsCoordinates && (
-              <p className="text-xs text-green-600 dark:text-green-400 mt-1">
-                GPS Coordinates: {gpsCoordinates.lat.toFixed(6)}, {gpsCoordinates.lon.toFixed(6)}
+    <div className="space-y-6">
+      {weatherFetched && (
+        <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 md:p-6 transition-all animate-in fade-in slide-in-from-top-4">
+          <div className="flex items-start gap-4">
+            <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+               <span className="text-primary text-sm font-bold">✓</span>
+            </div>
+            <div>
+              <p className="text-sm text-white/80 font-bold mb-1">
+                Weather synchronized for {lastLocation}
               </p>
-            )}
-            <p className="text-xs text-green-600 dark:text-green-400 mt-1">
-              Temperature, humidity, and rainfall sliders have been automatically set below.
-            </p>
+              <div className="flex flex-wrap gap-x-4 gap-y-1">
+                {gpsCoordinates && (
+                  <p className="text-[10px] text-white/40 uppercase tracking-wider">
+                    GPS: {gpsCoordinates.lat.toFixed(4)}, {gpsCoordinates.lon.toFixed(4)}
+                  </p>
+                )}
+                <p className="text-[10px] text-primary/60 uppercase tracking-wider font-bold">
+                  Parameters auto-populated
+                </p>
+              </div>
+            </div>
           </div>
-        )}
+        </div>
+      )}
 
-        <div className="space-y-3">
-          <Label className="text-sm font-medium">Auto-fetch weather data for your location</Label>
-
+      <div className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-6 items-end">
           {/* GPS Location Button */}
-          <Button
-            onClick={handleUseMyLocation}
-            disabled={isLoadingGPS || isLoadingWeather}
-            className="w-full bg-transparent"
-            variant="outline"
-          >
-            {isLoadingGPS ? (
-              <>
-                <Leaf className="mr-2 h-4 w-4 animate-spin text-primary" />
-                Getting Location...
-              </>
-            ) : (
-              <>
-                <MapPin className="mr-2 h-4 w-4" />
-                Use My Location (Quick)
-              </>
-            )}
-          </Button>
-
-          <div className="flex items-center gap-2">
-            <div className="flex-1 border-t border-muted"></div>
-            <span className="text-xs text-muted-foreground">OR</span>
-            <div className="flex-1 border-t border-muted"></div>
+          <div className="space-y-3">
+             <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 ml-1">Precision Detection</Label>
+             <Button
+                onClick={handleUseMyLocation}
+                disabled={isLoadingGPS || isLoadingWeather}
+                className={`w-full h-12 rounded-xl transition-all font-bold text-xs uppercase tracking-widest ${isLoadingGPS ? 'bg-primary/20 text-primary' : 'bg-white/5 hover:bg-white/10 text-white border-white/10 hover:border-white/20'}`}
+                variant="outline"
+              >
+                {isLoadingGPS ? (
+                  <>
+                    <Leaf className="mr-2 h-4 w-4 animate-spin" />
+                    Detecting...
+                  </>
+                ) : (
+                  <>
+                    <MapPin className="mr-2 h-4 w-4" />
+                    Use Precise Location
+                  </>
+                )}
+              </Button>
           </div>
 
           {/* State Selection */}
-          <div className="space-y-2">
-            <Label className="text-sm font-medium">Select your state</Label>
+          <div className="space-y-3">
+            <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 ml-1">Manual Selection</Label>
             <Select value={selectedState} onValueChange={handleStateSelect} disabled={isLoadingWeather}>
-              <SelectTrigger>
-                <SelectValue placeholder="Choose your state" />
+              <SelectTrigger className="bg-white/5 border-white/10 rounded-xl h-12 focus:ring-primary/20 text-white font-medium">
+                <SelectValue placeholder="Choose Region" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-[#0a0a0a] border-white/10">
                 {INDIAN_STATES.map((state) => (
-                  <SelectItem key={state} value={state}>
+                  <SelectItem key={state} value={state} className="focus:bg-primary/10 focus:text-primary">
                     {state}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
-
-          {isLoadingWeather && (
-            <div className="flex items-center justify-center py-4">
-              <LoadingAnimation size="sm" message="Fetching weather data..." />
-            </div>
-          )}
         </div>
 
-        <p className="text-xs text-muted-foreground">
-          Weather data will auto-populate temperature, humidity, and rainfall based on your location. Location name will
-          be refined in the background for better accuracy.
-        </p>
-      </CardContent>
-    </Card>
+        {isLoadingWeather && (
+          <div className="flex flex-col items-center justify-center py-8 gap-4 bg-white/[0.01] border border-dashed border-white/10 rounded-2xl animate-pulse">
+            <LoadingAnimation size="sm" />
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/60">Retrieving Meteorological Data</p>
+          </div>
+        )}
+      </div>
+
+      <p className="text-[10px] text-white/20 font-medium leading-relaxed italic border-l-2 border-primary/20 pl-4 py-1">
+        Real-time atmospheric analysis will automatically calibrate temperature, humidity, and precipitation variables based on your geolocation telemetry.
+      </p>
+    </div>
   )
 }

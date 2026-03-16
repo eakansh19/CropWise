@@ -13,13 +13,7 @@ const commonOptions = {
     cancelButton: 'bg-muted text-muted-foreground px-8 py-3 rounded-xl font-bold hover:bg-muted/80 transition-all',
     footer: 'text-xs text-muted-foreground'
   },
-  buttonsStyling: false,
-  showClass: {
-    popup: 'animate-in fade-in zoom-in duration-300'
-  },
-  hideClass: {
-    popup: 'animate-out fade-out zoom-out duration-200'
-  }
+  buttonsStyling: false
 }
 
 export const showAlert = {
